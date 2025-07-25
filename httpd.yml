@@ -51,5 +51,19 @@
         - kakasaheb
         - sangita
 
+#-------------------------------------------------------------------------------------------#
+--- # My conditional playbook for instaling the apache for Debian and Redhat families
+- hosts: demo
+  user: ansible
+  become: yes
+  connection: ssh
+  tasks:
+    - name: install pache for debian family
+      command: apt-get -y install apache2
+      when: ansible_os_family == "Debian"
+    - name: install apache for RedHat family
+      command: yum install httpd -y
+      when: ansible_os_family == "RedHat"
+
 
 
