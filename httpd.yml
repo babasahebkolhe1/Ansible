@@ -35,5 +35,21 @@
     - name: restart httpd
       action: service name=httpd state=restarted
 
+#-------------------------------------------------------------------------------------------#
+#loop in ansible
+--- # My loop playbook
+- hosts: demo
+  user: ansible
+  become: yes
+  connection: ssh
+  tasks:
+    - name: add a list of users in my demo group
+      user: name='{{item}}' state=present
+      with_items:
+        - babsaheb
+        - ajinath
+        - kakasaheb
+        - sangita
+
 
 
