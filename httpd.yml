@@ -7,3 +7,16 @@
   tasks:
     - name: Install httpd on linux
       action: yum name=httpd state=present
+
+#Download tree packages by using variable.
+--- # My variable playbook
+- hosts: demo
+  user: ansible
+  become: yes
+  connection: ssh
+  vars:
+    packagename: tree
+  tasks:
+    - name: Install HTTPD on linux
+      action: yum name='{{packagename}}' state=present
+
